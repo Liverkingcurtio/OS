@@ -1,0 +1,26 @@
+Discovering Hidden Processes, Services, and finding Normal and Abnormal Activity
+Q: Do boot processes have descriptions?
+    Get-Process | Select Name, Id, Description | Sort -Property Id
+
+Q: Where do the system processes and services normally run from? (C:\Windows\System32)
+    Get-Process | Select Name, Id, Path
+    Get-Ciminstance Win32_service | Select Name, Processid, Pathname
+    
+Q: Are Priority Levels of processes important?
+    Get-Process | Select Name, Priorityclass
+    Tasklist /m
+ 
+Q: Only show Modules with chrome in the name
+    get-process "*chrome*" | select-object -expandproperty modules | where-object modulename -like '*chrome*' | sort -u
+    
+Q: How would malware use Schedule Task?
+    schtasks /query | more
+    Get-ScheduledTask | Select * | Select -First 5
+    
+Q: Where are all the services stored
+    computer\HKEY_LOCAL\MACHINE\SYSTEM\CurrentControlSet\Services
+    
+COMMAND LINE---------------------------------------
+
+tasklist /fo:table | more
+tasklist /fo:csv | more
