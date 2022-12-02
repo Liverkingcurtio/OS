@@ -24,3 +24,7 @@ COMMAND LINE---------------------------------------
 
 tasklist /fo:table | more
 tasklist /fo:csv | more
+
+
+get-itemproperty HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System
+FOR ANYTHING UAC
