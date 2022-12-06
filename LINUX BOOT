@@ -1,0 +1,16 @@
+There are two primary processes after startup:
+
+    For kernel-space processes [kthreadd] ( PID = 2 )
+
+    For user-space processes /sbin/init ( PID = 1 )
+    
+    All kernel processes are fork()ed from [kthreadd] and all user processes are fork()ed from /sbin/init or direct ancestor.
+    
+    The kernel starts /sbin/init which is the parent/grandparent of all user processes.
+    
+    The kernel processes run in its own memory space. User processes run in a separate memory space
+    
+    User mode, in comparison, restricts access to a (usually quite small) subset of memory and safe CPU operations.
+    A system call is an interaction between a process and the kernel
+    
+    
