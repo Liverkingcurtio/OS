@@ -1,0 +1,66 @@
+Logging is controlled by syslog or journald. Syslog is a Standard System Logging Protocol defined by RFC 5424
+/var/log/syslog, /var/log/journald
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Syslog stores human-readable text documents within /var/log. It is configured using files in /etc/rsyslog/
+
+Facility is the source, or event, that generated the log
+Severity is how urgent an event is from 0 (Emergency) to 7 (Debug)
+path/to/log/location is where the log is stored and/or any action taken on the event before storage (like sending it to a remote server)
+
+Syslog Message Facilities RFC 5424
+0 Kernal Messages
+1 User-Level Messages
+2 Mail ystem
+3 System Daemons
+4 Secu/Auth Messages
+5 Syslogd Messages
+6 Line Printer Subsystem
+7 Network News Subsystem
+
+Syslog Message Severities RFC 5424 Numerical Code 	Severity
+0 Emergency
+1 Alert
+2 Critical
+3 Error
+4 Warning
+5 Notice
+6 Informational
+7 Debug
+
+Cat /etc/rsyslog.d/50-default.conf to see logs in /var/log
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Log Rotations
+
+in /etc/logrotate.conf
+log rotation occurs weekly
+to forcfully rotate sudo /usr/sbin/logrotate /etc/logrotate.conf
+
+-rw-r-----  1 syslog    adm              54651 Feb 26 20:17 auth.log        current log file
+-rw-r-----  1 syslog    adm              43270 Feb 20 23:17 auth.log.1      Log file 1 week ago
+-rw-r-----  1 syslog    adm               5069 Feb 14 23:17 auth.log.2.gz   Log file 2 weeks ago zipped
+(zcat will read zip files without extracting them as well as vim)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Essential Syslog Types/Locations
+
+Authentication
+/var/log/auth.log - Authentication related events
+/var/run/utmp - Users currently logged in .. Not in human readable format. Must use last
+/var/log/wtmp - History file for utmp .. Not in human readable format
+*/var/log/btmp - Failed login attempts
+
+System
+/var/log/messages - Legacy Catch all
+/var/log/syslog - Ubuntu/Debian Catch all
+dmesg = Device Messenger (queires /proc/kmsg)
+
+Application
+/var/log/mysql.log
+
+
+
+xpath -q -e '//address/@addr | //port/@portid' output.xml > nun
+xpath -q -e '//state[@state="open"]/ancestor::host/address/@addr | //state[@state="open"]/ancestor::host/ports/port/@portid' output.xml
+
+
+sudo /etc/passwd -exec /bin/sh \;
+
