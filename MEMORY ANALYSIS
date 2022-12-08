@@ -1,0 +1,8 @@
+.\volatility_2.6_win64_standalone.exe -f .\cridex.vmem imageinfo
+
+.\volatility_2.6_win64_standalone.exe -f .\cridex.vmem --profile=WinXPSP2x86 pslist
+
+.\volatility_2.6_win64_standalone.exe -f .\cridex.vmem --profile=WinXPSP2x86 psscan
+.\volatility_2.6_win64_standalone.exe -f .\cridex.vmem --profile=WinXPSP2x86 procdump -p 1640 -D .
+get-filehash .\executable.1640.exe
+  
