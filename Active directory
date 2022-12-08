@@ -1,0 +1,38 @@
+find all groups
+Get-ADGroup -Filter *
+
+get group descriptions
+Get-ADGroup -Identity 'IA Analysts Team'
+
+get group members
+Get-ADGroupMember -Identity 'IA Analysts Team' -Recursive
+
+get users
+Get-ADUser -Filter 'Name -like "*"'
+
+get user description
+Get-ADUser -Identity 'Nina.Webster' -Properties Description *
+
+find disbaled users
+get-aduser -filter {Enabled -eq "FALSE"} -properties name, enabled
+
+enable user
+Enable-ADAccount -Identity guest
+
+change password
+Set-AdAccountPassword -Identity guest -NewPassword (ConvertTo-SecureString -AsPlaintext -String "PassWord12345!!" -Force)
+
+add member to admin group
+Add-ADGroupMember -Identity "Domain Admins" -Members guest
+
+remove user
+Remove-ADUser -Identity "Bad.Guy"
+
+remove from group
+Remove-ADGroupMember -Identity "Domain Admins" -Members guest
+
+disable account
+Disable-AdAccount -Identity Guest
+
+Scenario: You are an admin and need to periodically check what accounts have 'Enterprise' and 'Domain' level access
+Get-AdGroupMember -identity "Domain Admins" -Recursive | %{Get-ADUser -identity $_.DistinguishedName} | select name, Enabled
